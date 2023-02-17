@@ -1,0 +1,49 @@
+{
+    "adapters": [
+      {
+        "model": "GenericNetworkAdapter",
+        "ip": "tcp://10.20.30.11:1024",
+        "ports": [
+          {
+            "id": "main_left",
+            "name": "Main Left",
+            "methods": [
+              {
+                "id": "power",
+                "name": "Power",
+                "command": "%1POWR",
+                "params": [
+                  {
+                    "id": "on",
+                    "name": "on",
+                    "value": "01\r"
+                  },
+                  {
+                    "id": "off",
+                    "name": "off",
+                    "value": "00\r"
+                  }
+                ],
+                "type": "actions"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "styles": [
+      "main_left.main_method=power.invisible=true"
+    ],
+    "rules": {
+      "operation_time_started": [
+        "main_left.power.on"
+      ],
+      "operation_time_ended": [
+        "main_left.power.off"
+      ],
+      "meeting_started": [
+        "main_left.power.on"
+
+      ]
+    }
+  }

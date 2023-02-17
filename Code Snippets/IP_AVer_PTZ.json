@@ -1,0 +1,116 @@
+{
+    "adapters": [
+      {
+        "model": "GenericNetworkAdapter",
+        "ip": "udp://192.168.10.15:52381",
+        "ports": [
+          {
+            "id": "instruct_cam",
+            "name": "Instruct Cam",
+            "methods": [
+              {
+                "id": "power",
+                "name": "Power",
+                "command": "\\x01\\x00\\x00\\x09\\x00\\x00\\x00\\x00\\%",
+                "params": [
+                  {
+                    "id": "on",
+                    "name": "on",
+                    "value": "x81\\x01\\x04\\x00\\x02\\xFF"
+                  },
+                  {
+                    "id": "off",
+                    "name": "off",
+                    "value": "x81\\x01\\x04\\x00\\x03\\xFF"
+                  }
+                ],
+                "type": "actions"
+              },
+              {
+                "id": "tracking",
+                "name": "Tracking",
+                "command": "\\x01\\x00\\x00\\x09\\x00\\x00\\x00\\x00\\%",
+                "params": [
+                  {
+                    "id": "on",
+                    "name": "on",
+                    "value": "x81\\x01\\x04\\x3F\\x01\\5D\\xFF"
+                  },
+                  {
+                    "id": "off",
+                    "name": "off",
+                    "value": "x81\\x01\\x04\\x3F\\x01\\5E\\xFF"
+                  }
+                ],
+                "type": "actions"
+              },
+              {
+                "id": "presets",
+                "name": "Presets",
+                "command": "\\x01\\x00\\x00\\x09\\x00\\x00\\x00\\x00\\%",
+                "params": [
+                  {
+                    "id": "1",
+                    "name": "1",
+                    "value": "x81\\x01\\x04\\x3F\\x02\\x01\\xFF"
+                  },
+                  {
+                    "id": "2",
+                    "name": "2",
+                    "value": "x81\\x01\\x04\\x3F\\x02\\x02\\xFF"
+                  },
+                  {
+                    "id": "3",
+                    "name": "3",
+                    "value": "x81\\x01\\x04\\x3F\\x02\\x03\\xFF"
+                  },
+                  {
+                    "id": "home",
+                    "name": "home",
+                    "value": "x81\\x01\\x04\\x3F\\x02\\x00\\xFF"
+                  }
+                ],
+                "type": "actions"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "scenes": [
+      {
+        "id": "scene_1",
+        "name": "Power On",
+        "icon": "icon_power",
+        "commands": [
+          "instruct_cam.power.on",
+          "instruct_cam.presets.home",
+          "instruct_cam.tracking.off"
+        ]
+      },
+      {
+        "id": "scene_2",
+        "name": "Power Off",
+        "icon": "icon_power",
+        "commands": [
+          "instruct_cam.power.off"
+        ]
+      }
+    ],
+    "styles": [
+      "instruct_cam.icon=icon_satellite_dish"
+    ],
+    "rules": {
+      "operation_time_started": [
+        "instruct_cam.power.on"
+      ],
+      "operation_time_ended": [
+        "confidence_left.power.off"
+      ],
+      "meeting_started": [
+        "instruct_cam.power.on",
+        "instruct_cam.presets.home",
+        "instruct_cam.tracking.off"
+      ]
+    }
+  }

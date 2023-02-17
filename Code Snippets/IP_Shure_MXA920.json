@@ -1,0 +1,138 @@
+{
+    "adapters": [
+      {
+        "model": "GenericNetworkAdapter",
+        "ip": "tcp://192.168.10.7:2202",
+        "ports": [
+          {
+            "id": "mic1",
+            "name": "Ceiling Mic",
+            "methods": [
+              {
+                "id": "mute",
+                "name": "Mute Status",
+                "command": "< SET DEVICE_AUDIO_MUTE % >\\x0D",
+                "params": [
+                  {
+                    "id": "mute",
+                    "name": "Mute On",
+                    "value": "ON"
+                  },
+                  {
+                    "id": "unmute",
+                    "name": "Mute Off",
+                    "value": "OFF"
+                  },
+                  {
+                    "id": "toggle",
+                    "name": "Toggle",
+                    "value": "TOGGLE"
+                  }
+                ],
+                "type": "actions"
+              },
+              {
+                "id": "LED Brightness",
+                "name": "LED Control",
+                "command": "< SET LED_BRIGHTNESS % >\\x0D",
+                "params": [
+                  {
+                    "id": "on",
+                    "name": "On",
+                    "value": "5"
+                  },
+                  {
+                    "id": "off",
+                    "name": "Off",
+                    "value": "0"
+                  }
+                ],
+                "type": "actions"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "model": "GenericNetworkAdapter",
+        "ip": "tcp://192.168.10.62:2203",
+        "ports": [
+          {
+            "id": "flic_hub",
+            "name": "Flic Hub",
+            "methods": [
+              {
+                "id": "hello",
+                "name": "Hello",
+                "command": "Hi",
+                "type": "actions"
+              }
+            ],
+            "response_filter": [
+              "user_customized_filter1"
+            ]
+          }
+        ]
+      }
+    ],
+    "scenes": [
+      {
+        "id": "scene_1",
+        "name": "Power On",
+        "icon": "icon_power",
+        "commands": [
+          "mic1.mute.mute"
+        ]
+      },
+      {
+        "id": "scene_2",
+        "name": "Power Off",
+        "icon": "icon_power",
+        "commands": [
+          "mic1.mute.mute"
+        ]
+      },
+      {
+        "id": "scene_3",
+        "name": "Mute Mics",
+        "icon": "icon_power",
+        "commands": [
+          "mic1.mute.mute"
+        ]
+      },
+      {
+        "id": "scene_4",
+        "name": "Unmute Mics",
+        "icon": "icon_power",
+        "commands": [
+          "mic1.mute.unmute"
+        ]
+      }
+    ],
+    "styles": [
+      "mic1.icon=icon_ceiling_mic.invisible=true",
+      "flic_hub.hello.invisible=true"
+    ],
+    "rules": {
+      "operation_time_started": [
+      ],
+      "operation_time_ended": [
+      ],
+      "meeting_started": [
+        "mic1.mute.mute"
+      ],
+      "meeting_ended": [
+        "mic1.mute.mute"
+      ],
+      "user_customized_event1": [
+        "mic1.mute.toggle"
+      ]
+    },
+    "response_filters": [
+      {
+        "name": "user_customized_filter1",
+        "filter_regex": "TOGGLE",
+        "trigger_event": "user_customized_event1"
+      }
+    ]
+  }

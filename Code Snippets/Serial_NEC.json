@@ -1,0 +1,74 @@
+{
+    "adapters": [
+      {
+        "model": "iTachIP2SL",
+        "ip": "192.168.10.12",
+        "uuid": "GlobalCache_000C1E057D3E",
+        "ports": [
+          {
+            "id": "confidence_left",
+            "name": "Conf left",
+            "settings": {
+              "baud_rate": "9600",
+              "flow_control": "FLOW_NONE",
+              "parity": "PARITY_NO"
+            },
+            "methods": [
+              {
+                "id": "power",
+                "name": "Power",
+                "command": "\\x01\\x30\\x41\\x30\\x41\\x30\\x43\\x02\\x43\\x32\\x30\\x33\\x44\\x36\\x30\\x30\\x30\\%",
+                "params": [
+                  {
+                    "id": "on",
+                    "name": "on",
+                    "value": "x31\\x03\\x73\\x0D\r"
+                  },
+                  {
+                    "id": "off",
+                    "name": "off",
+                    "value": "x34\\x03\\x76\\x0D\r"
+                  }
+                ],
+                "type": "actions"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "scenes": [
+      {
+        "id": "scene_1",
+        "name": "Power On",
+        "icon": "icon_power",
+        "commands": [
+          "confidence_left.power.on"
+        ]
+      },
+      {
+        "id": "scene_2",
+        "name": "Power Off",
+        "icon": "icon_power",
+        "commands": [
+          "confidence_left.power.off"
+        ]
+      }
+    ],
+    "styles": [
+      "main_right.main_method=power.invisible=true"
+    ],
+    "rules": {
+      "operation_time_started": [
+        "confidence_left.power.on"
+      ],
+      "operation_time_ended": [
+        "confidence_left.power.off"
+      ],
+      "meeting_started": [
+        "confidence_left.power.on"
+      ],
+      "meeting_ended": [
+      ]
+    }
+  }
