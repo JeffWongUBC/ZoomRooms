@@ -391,26 +391,26 @@
       ]
     },
     {
-        "model": "GenericNetworkAdapter",
-        "ip": "tcp://192.168.10.62:2203",
-        "ports": [
-          {
-            "id": "flic_hub",
-            "name": "Flic Hub",
-            "methods": [
-              {
-                "id": "hello",
-                "name": "Hello",
-                "command": "Hi",
-                "type": "actions"
-              }
-            ],
-            "response_filter": [
-              "user_customized_filter1"
-            ]
-          }
-        ]
-      }
+      "model": "GenericNetworkAdapter",
+      "ip": "tcp://192.168.10.62:2203",
+      "ports": [
+        {
+          "id": "flic_hub",
+          "name": "Flic Hub",
+          "methods": [
+            {
+              "id": "hello",
+              "name": "Hello",
+              "command": "Hi",
+              "type": "actions"
+            }
+          ],
+          "response_filter": [
+            "user_customized_filter1"
+          ]
+        }
+      ]
+    }
   ],
   "scenes": [
     {
@@ -467,18 +467,18 @@
     }
   ],
   "styles": [
-    "main_left.main_method=power.invisible=true",
-    "main_left.icon=icon_cable_tv.invisible=true",
-    "main_right.main_method=power.invisible=true",
-    "main_right.icon=icon_cable_tv.invisible=true",
-    "confidence_left.main_method=power.invisible=true",
-    "confidence_left.icon=icon_cable_tv.invisible=true",
-    "confidence_right.main_method=powe.invisible=true",
-    "confidence_right.icon=icon_cable_tv.invisible=true",
-    "instruct_cam.icon=icon_satellite_dish.invisible=true",
-    "audience_cam.icon=icon_satellite_dish.invisible=true",
-    "mic1.icon=icon_ceiling_mic.invisible=true",
-    "mic2.icon=icon_speakerphone.invisible=true",
+    "main_left.main_method=power",
+    "main_left.icon=icon_cable_tv",
+    "main_right.main_method=power",
+    "main_right.icon=icon_cable_tv",
+    "confidence_left.main_method=power",
+    "confidence_left.icon=icon_cable_tv",
+    "confidence_right.main_method=powe",
+    "confidence_right.icon=icon_cable_tv",
+    "instruct_cam.icon=icon_satellite_dish",
+    "audience_cam.icon=icon_satellite_dish",
+    "mic1.icon=icon_ceiling_mic",
+    "mic2.icon=icon_speakerphone",
     "flic_hub.hello.invisible=true"
   ],
   "rules": {
@@ -516,7 +516,7 @@
     ],
     "user_customized_event1": [
       "mic1.mute.toggle"
-      ]
+    ]
   },
   "response_filters": [
     {
